@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}会員登録{% endblock %}
+
+{% from 'macros.html' import form_errors %}
+
+{% block body %}
+<form action="{{ url_for('register.index') }}" method="post">
+    {{ form.csrf_token }}
+    <div>
+        <dl>
+            <dt>{{ form.email.label }}</dt>
+            <dd>
+                {{ form.email }}
+                {{ form_errors(form.email) }}
+            </dd>
+            <dt>{{ form.username.label }}</dt>
+            <dd>
+                {{ form.username }}
+                {{ form_errors(form.username) }}
+            </dd>
+            <dt>{{ form.password.label }}</dt>
+            <dd>
+                {{ form.password }}
+                {{ form_errors(form.password) }}
+            </dd>
+            <dt>{{ form.password_confirm.label }}</dt>
+            <dd>
+                {{ form.password_confirm }}
+                {{ form_errors(form.password_confirm) }}
+            </dd>
+        </dl>
+        <button type="submit">登録する</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}ログイン{% endblock %}
+
+{% block body %}
+<form action="{{ url_for('home.login') }}" method="post">
+    <div>
+        <h1>ログイン</h1>
+        {{ form.email.label }}: {{ form.email }}
+        {{ form.password.label }}: {{ form.password }}
+        {{ form.csrf_token }}
+
+        <button type="submit">登録する</button>
+    </div>
+</form>
+{% endblock %}

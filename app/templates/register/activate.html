@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %}会員登録完了{% endblock %}
+
+{% block javascript %}
+<script type="application/javascript">
+    function sendRegisterConfirmMail(button) {
+        var i = 30;
+
+        $(button).prop('disabled', true).text('再送信できるまで(' + i + ')秒');
+
+        var interval = setInterval(function () {
+            i = i - 1;
+            if (i === 0) {
+                clearInterval(interval);
+                $(button).text('再送信する').prop('disabled', false);
+            } else {
+                $(button).text('再送信できるまで(' + i + ')秒');
+            }
+        }, 1000);
+
+        $.get('{{ url_for('register.send_confirm_mail') }}');
+    }
+</script>
+{% endblock %}
+
+{% block body %}
+    <p>メールを送信しました。</p>
+    <button type="button" onclick="sendRegisterConfirmMail(this)">再送信する</button>
+{% endblock %}

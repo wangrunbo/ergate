@@ -1,0 +1,6 @@
+{#フォームのバリエーションエラーを飛び出せる#}
+{% macro form_errors(field) %}
+    {% for error in field.errors %}
+        <span style="color: #ff0000; font-size: small;">{{ error }}</span>
+    {% endfor %}
+{% endmacro %}
